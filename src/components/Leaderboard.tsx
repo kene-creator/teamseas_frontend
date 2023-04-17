@@ -1,24 +1,52 @@
-import React from "react";
+import React, { useState } from "react";
 import { Box, Heading, VStack } from "@chakra-ui/layout";
 import LeaderboardItem from "./LeaderboardItem";
-import { count } from "console";
+import { Donation } from "../typings/type";
+import { useQuery } from "urql";
+
+const DonationsQuery = `
+query Query($orderBy: OrderByParams) {
+    donations(orderBy: $orderBy) {
+      count
+      id
+      displayName
+      createdAt
+      message
+      team
+    }
+  }`;
+
+type DonationsQueryRes = {
+  donations: Donation[];
+};
 
 type Props = {};
 
 const Leaderboard = (props: Props) => {
+  const [field, setOrderByField] = useState("createdAt");
+
+  const [{ data, fetching, error }] = useQuery<DonationsQueryRes>({
+    query: DonationsQuery,
+    variables: {
+      orderBy: {
+        field,
+        direction: "desc",
+      },
+    },
+  });
+
+  if (fetching) return <div>Fetching...</div>;
+  if (error) return <div>Error: {error.message}</div>;
+
   return (
     <Box w="100%">
-      <Heading>LEADERBOARD</Heading>
+      <Heading as="h1" size="2xl">
+        LEADERBOARD
+      </Heading>
       <VStack spacing={4}>
-        <LeaderboardItem
-          donation={{
-            displayName: "Leaderboard",
-            count: 300,
-            createdAt: "2023-03-26T14:44:35.483+00:00",
-            team: "team",
-            message: "Leader",
-          }}
-        />
+        {data?.donations.map((donation) => (
+          <LeaderboardItem donation={donation} />
+        ))}
       </VStack>
     </Box>
   );

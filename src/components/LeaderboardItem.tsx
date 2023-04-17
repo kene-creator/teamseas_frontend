@@ -45,6 +45,7 @@ const LeaderboardItem = ({ donation }: Props) => {
             py={1.5}
             px={2}
             textTransform="lowercase"
+            textAlign="center"
             as="div"
           >
             {donation.count.toLocaleString()} pounds
