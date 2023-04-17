@@ -1,38 +1,41 @@
-import * as React from "react"
+import * as React from "react";
+import "@fontsource/montserrat/700.css";
+import "@fontsource/montserrat/400.css";
+import "@fontsource/montserrat/300.css";
 import {
   ChakraProvider,
   Box,
   Text,
-  Link,
   VStack,
-  Code,
   Grid,
-  theme,
-} from "@chakra-ui/react"
-import { ColorModeSwitcher } from "./ColorModeSwitcher"
-import { Logo } from "./Logo"
+  extendTheme,
+  Heading,
+} from "@chakra-ui/react";
+import { Logo } from "./Logo";
+import bg from "./assets/bg-home.jpg";
+
+const theme = extendTheme({
+  fonts: {
+    heading: "Montserrat",
+    body: "Montserrat",
+  },
+});
 
 export const App = () => (
   <ChakraProvider theme={theme}>
     <Box textAlign="center" fontSize="xl">
-      <Grid minH="100vh" p={3}>
-        <ColorModeSwitcher justifySelf="flex-end" />
+      <Grid minH="100vh" p={3} bg="gray.50">
         <VStack spacing={8}>
-          <Logo h="40vmin" pointerEvents="none" />
+          <Logo h="20vmin" pointerEvents="none" />
+          <Heading as="h1" size="xl">
+            JOIN THE MOVEMENT
+          </Heading>
           <Text>
-            Edit <Code fontSize="xl">src/App.tsx</Code> and save to reload.
+            The team is growing everyday and scoring wins for the seas
+            <br /> Remove trash with us and track your progress
           </Text>
-          <Link
-            color="teal.500"
-            href="https://chakra-ui.com"
-            fontSize="2xl"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Learn Chakra
-          </Link>
         </VStack>
       </Grid>
     </Box>
   </ChakraProvider>
-)
+);
