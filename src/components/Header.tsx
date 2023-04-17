@@ -2,7 +2,8 @@ import React from "react";
 import { Box, Text, VStack, Grid, Heading } from "@chakra-ui/react";
 import { Logo } from "../Logo";
 import { Counter } from "../donations/Counter";
-import { useQuery } from "urql";
+import { useQuery, useSubscription } from "urql";
+import Leaderboard from "./Leaderboard";
 
 const TotalDonationsQuery = `
   query Query {
@@ -10,7 +11,21 @@ const TotalDonationsQuery = `
   }
 `;
 
+const TotalUpdatedQuery = `
+  subscription Subscription {
+    totalUpdated {
+        total
+    }
+  }`;
+
+const handleSubscription = (previous: any, newTotal: any) =>
+  newTotal?.totalUpdated?.total;
+
 export default function Header() {
+  const [res] = useSubscription(
+    { query: TotalUpdatedQuery },
+    handleSubscription
+  );
   const [{ data, fetching, error }] = useQuery({ query: TotalDonationsQuery });
 
   if (fetching) return <div>Fetching...</div>;
@@ -29,8 +44,9 @@ export default function Header() {
             <br /> Remove trash with us and track your progress
           </Text>
           <Heading as="h2" size="4xl">
-            <Counter from={0} to={data.totalDonations} />
+            <Counter from={0} to={res.data || data.totalDonations} />
           </Heading>
+          <Leaderboard />
         </VStack>
       </Grid>
     </Box>
