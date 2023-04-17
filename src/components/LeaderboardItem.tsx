@@ -1,6 +1,7 @@
 import { Avatar, Flex, Text, Badge } from "@chakra-ui/react";
 import React from "react";
 import { Donation } from "../typings/type";
+import formatDate from "../utils/formatDate";
 
 interface Props {
   donation: Donation;
@@ -46,9 +47,9 @@ const LeaderboardItem = ({ donation }: Props) => {
             textTransform="lowercase"
             as="div"
           >
-            {donation.count} Pounds
+            {donation.count.toLocaleString()} pounds
           </Badge>
-          <Text fontSize="xs">{donation.createdAt}</Text>
+          <Text fontSize="xs">{formatDate(donation.createdAt)}</Text>
         </Flex>
       </Flex>
     </Flex>

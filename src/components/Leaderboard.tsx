@@ -14,7 +14,7 @@ const Leaderboard = (props: Props) => {
           donation={{
             displayName: "Leaderboard",
             count: 300,
-            createdAt: "12/13/2030",
+            createdAt: "2023-03-26T14:44:35.483+00:00",
             team: "team",
             message: "Leader",
           }}
