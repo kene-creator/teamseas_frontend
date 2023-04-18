@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import { Box, VStack, Button } from "@chakra-ui/react";
 import CountSelection from "./CountSelection";
+import DonationDetials from "./DonationDetials";
 
 type Props = {};
 
@@ -20,38 +21,12 @@ const DonationWizard = (props: Props) => {
 
   const pages = [
     <CountSelection nextStep={nextStep} initialCount={donationDetials.count} />,
-    <div>
-      Page 2{" "}
-      <Button
-        width="100%"
-        size="lg"
-        borderRadius="full"
-        variant="ghost"
-        fontSize="sm"
-        color="gray.700"
-        onClick={prevStep}
-      >
-        Prev
-      </Button>{" "}
-    </div>,
+    <DonationDetials nextStep={nextStep} previousStep={prevStep} />,
   ];
 
   return (
     <Box boxShadow="xl" p={8} bg="white" borderRadius="xl" minW="sm">
       {pages[step]}
-      <VStack spacing={2} mt={8}>
-        {/* <Button
-          width="100%"
-          size="lg"
-          borderRadius="full"
-          variant="ghost"
-          fontSize="sm"
-          color="gray.700"
-          onClick={prevStep}
-        >
-          Prev
-        </Button> */}
-      </VStack>
     </Box>
   );
 };
