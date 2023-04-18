@@ -7,6 +7,8 @@ import {
   useRadioGroup,
   VStack,
   Button,
+  Heading,
+  Text,
 } from "@chakra-ui/react";
 
 interface Props {
@@ -39,6 +41,13 @@ const CountSelection = ({ initialCount, nextStep }: Props) => {
 
   return (
     <VStack spacing={4} align="stretch">
+      <Heading as="h3" size="md">
+        JOIN #TEAMSEAS
+      </Heading>
+      <Text fontSize="md" fontWeight="bold">
+        {" "}
+        $1 dollar remove a pound of trash
+      </Text>
       <SimpleGrid {...group} columns={2} spacing={2}>
         {options.map((val) => {
           const radio = getRadioProps({ value: val.toString() });
