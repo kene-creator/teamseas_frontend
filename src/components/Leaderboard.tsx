@@ -53,8 +53,8 @@ const Leaderboard = (props: Props) => {
           </Stack>
         </RadioGroup>
 
-        {data?.donations.map((donation) => (
-          <LeaderboardItem donation={donation} />
+        {data?.donations.map((donation, i) => (
+          <LeaderboardItem donation={donation} key={i} />
         ))}
       </VStack>
     </Box>
