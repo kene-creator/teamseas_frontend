@@ -3,11 +3,20 @@ import { Formik, Form } from "formik";
 import React from "react";
 import { InputField } from "../form/InputField";
 import { TextAreaField } from "../form/TextAreaField";
+import * as yup from "yup";
 
 type Props = {
   nextStep: (values: any) => void;
   previousStep: () => void;
 };
+
+const detialsSchema = yup.object().shape({
+  displayName: yup.string().required("Display Name is required"),
+  email: yup.string().email("Invalid email").required("Email is required"),
+  mobile: yup.string().nullable(),
+  team: yup.string().nullable(),
+  message: yup.string().nullable(),
+});
 
 const DonationDetials = ({ nextStep, previousStep }: Props) => {
   const submit = (values: any) => {
@@ -24,6 +33,7 @@ const DonationDetials = ({ nextStep, previousStep }: Props) => {
         message: "",
       }}
       onSubmit={submit}
+      validationSchema={detialsSchema}
     >
       {(formik) => (
         <Form>
