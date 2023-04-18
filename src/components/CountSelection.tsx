@@ -22,6 +22,7 @@ const CountSelection = (props: Props) => {
     name: "pounds",
     value: pounds.toString(),
     onChange: (nextValue) => {
+      setCustomAmount("");
       setPounds(parseInt(nextValue));
     },
   });
@@ -41,9 +42,17 @@ const CountSelection = (props: Props) => {
         })}
       </SimpleGrid>
 
-      <NumberInput>
+      <NumberInput
+        onFocus={() => setPounds(0)}
+        onChange={(value) => {
+          setPounds(parseInt(value));
+          setCustomAmount(value);
+        }}
+        value={customAmount}
+      >
         <NumberInputField placeholder="other amount" />
       </NumberInput>
+      <hr />
     </VStack>
   );
 };
