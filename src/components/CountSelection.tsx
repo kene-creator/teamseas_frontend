@@ -6,13 +6,17 @@ import {
   SimpleGrid,
   useRadioGroup,
   VStack,
+  Button,
 } from "@chakra-ui/react";
 
-interface Props {}
+interface Props {
+  initialCount: number;
+  nextStep: (values: any) => void;
+}
 
 const options = [5, 20, 50, 100];
 
-const CountSelection = (props: Props) => {
+const CountSelection = ({ initialCount, nextStep }: Props) => {
   const [pounds, setPounds] = useState(20);
   const [customAmount, setCustomAmount] = useState(
     "" + (options.includes(pounds) ? "" : pounds)
@@ -28,6 +32,10 @@ const CountSelection = (props: Props) => {
   });
 
   const group = getRootProps();
+
+  const next = () => {
+    nextStep({ count: pounds });
+  };
 
   return (
     <VStack spacing={4} align="stretch">
@@ -53,6 +61,15 @@ const CountSelection = (props: Props) => {
         <NumberInputField placeholder="other amount" />
       </NumberInput>
       <hr />
+      <Button
+        width="100%"
+        colorScheme="orange"
+        size="lg"
+        borderRadius="full"
+        onClick={next}
+      >
+        Next
+      </Button>
     </VStack>
   );
 };

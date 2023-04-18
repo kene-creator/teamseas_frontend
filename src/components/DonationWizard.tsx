@@ -6,8 +6,9 @@ type Props = {};
 
 const DonationWizard = (props: Props) => {
   const [step, setStep] = useState(0);
+  const [donationDetials, setDonationDetials] = useState({ count: 20 });
 
-  const nextStep = () => {
+  const nextStep = (values: any = {}) => {
     setStep(step + 1);
   };
 
@@ -15,24 +16,17 @@ const DonationWizard = (props: Props) => {
     setStep(step - 1);
   };
 
-  const pages = [<CountSelection />, <div>Page 2 </div>];
+  const pages = [
+    <CountSelection nextStep={nextStep} initialCount={donationDetials.count} />,
+    <div>Page 2 </div>,
+  ];
 
   return (
     <Box boxShadow="xl" p={8} bg="white" borderRadius="xl" minW="sm">
       {pages[step]}
       <VStack spacing={2} mt={8}>
-        <Button
+        {/* <Button
           width="100%"
-          colorScheme="orange"
-          size="lg"
-          borderRadius="full"
-          onClick={nextStep}
-        >
-          Next
-        </Button>
-        <Button
-          width="100%"
-          colorScheme="orange"
           size="lg"
           borderRadius="full"
           variant="ghost"
@@ -41,7 +35,7 @@ const DonationWizard = (props: Props) => {
           onClick={prevStep}
         >
           Prev
-        </Button>
+        </Button> */}
       </VStack>
     </Box>
   );
