@@ -9,7 +9,9 @@ const DonationWizard = (props: Props) => {
   const [donationDetials, setDonationDetials] = useState({ count: 20 });
 
   const nextStep = (values: any = {}) => {
+    const mergedDetials = { ...donationDetials, ...values };
     setStep(step + 1);
+    setDonationDetials(mergedDetials);
   };
 
   const prevStep = () => {
@@ -18,7 +20,20 @@ const DonationWizard = (props: Props) => {
 
   const pages = [
     <CountSelection nextStep={nextStep} initialCount={donationDetials.count} />,
-    <div>Page 2 </div>,
+    <div>
+      Page 2{" "}
+      <Button
+        width="100%"
+        size="lg"
+        borderRadius="full"
+        variant="ghost"
+        fontSize="sm"
+        color="gray.700"
+        onClick={prevStep}
+      >
+        Prev
+      </Button>{" "}
+    </div>,
   ];
 
   return (

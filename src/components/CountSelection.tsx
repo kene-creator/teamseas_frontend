@@ -17,7 +17,7 @@ interface Props {
 const options = [5, 20, 50, 100];
 
 const CountSelection = ({ initialCount, nextStep }: Props) => {
-  const [pounds, setPounds] = useState(20);
+  const [pounds, setPounds] = useState(initialCount);
   const [customAmount, setCustomAmount] = useState(
     "" + (options.includes(pounds) ? "" : pounds)
   );
