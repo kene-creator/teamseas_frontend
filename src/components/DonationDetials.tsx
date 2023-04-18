@@ -1,4 +1,4 @@
-import { VStack, Button } from "@chakra-ui/react";
+import { VStack, Button, Heading } from "@chakra-ui/react";
 import { Formik, Form } from "formik";
 import React from "react";
 import { InputField } from "../form/InputField";
@@ -28,6 +28,7 @@ const DonationDetials = ({ nextStep, previousStep }: Props) => {
       {(formik) => (
         <Form>
           <VStack spacing={4} align="stretch">
+            <Heading as="h3">Detials</Heading>
             <InputField
               label="Display Name"
               name="displayName"
