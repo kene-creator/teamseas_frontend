@@ -4,6 +4,7 @@ import { Logo } from "../Logo";
 import { Counter } from "../donations/Counter";
 import { useQuery, useSubscription } from "urql";
 import Leaderboard from "./Leaderboard";
+import DonationWizard from "./DonationWizard";
 
 const TotalDonationsQuery = `
   query Query {
@@ -46,6 +47,7 @@ export default function Header() {
           <Heading as="h2" size="4xl">
             <Counter from={0} to={res.data || data.totalDonations} />
           </Heading>
+          <DonationWizard />
           <Leaderboard />
         </VStack>
       </Grid>
