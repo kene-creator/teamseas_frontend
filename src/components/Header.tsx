@@ -5,6 +5,7 @@ import { Counter } from "../donations/Counter";
 import { useQuery, useSubscription } from "urql";
 import Leaderboard from "./Leaderboard";
 import DonationWizard from "./DonationWizard";
+import bg from "../assets/bg-home.jpg";
 
 const TotalDonationsQuery = `
   query Query {
@@ -33,8 +34,16 @@ export default function Header() {
   if (error) return <div>Error: {error.message}</div>;
 
   return (
-    <Box textAlign="center" fontSize="xl">
-      <Grid minH="100vh" p={3} bg="gray.50">
+    <Box
+      textAlign="center"
+      fontSize="xl"
+      bgImage={bg}
+      bgPosition="center"
+      bgRepeat="no-repeat"
+      bgSize="cover"
+      maxW="100%"
+    >
+      <Grid minH="100vh" p={3}>
         <VStack spacing={8}>
           <Logo h="20vmin" pointerEvents="none" />
           <Heading as="h1" size="xl">

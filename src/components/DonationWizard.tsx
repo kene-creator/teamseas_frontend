@@ -3,6 +3,7 @@ import { Box, Button } from "@chakra-ui/react";
 import CountSelection from "./CountSelection";
 import DonationDetials from "./DonationDetials";
 import { useMutation } from "urql";
+import { useBreakpointValue } from "@chakra-ui/react";
 
 const CreateDonation = `
 mutation CreateDonation($createDonationInput: CreateDonationInput!) {
@@ -52,8 +53,10 @@ const DonationWizard = (props: Props) => {
     <DonationDetials nextStep={nextStep} previousStep={prevStep} />,
   ];
 
+  const minWidth = useBreakpointValue({ base: "100%", lg: "sm" });
+
   return (
-    <Box boxShadow="xl" p={8} bg="white" borderRadius="xl" minW="sm">
+    <Box boxShadow="xl" p={8} bg="white" borderRadius="xl" minW={minWidth}>
       {showConfirmation ? (
         <div>
           Thank you for your donation of $
