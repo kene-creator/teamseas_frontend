@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { Box } from "@chakra-ui/react";
+import { Box, Button } from "@chakra-ui/react";
 import CountSelection from "./CountSelection";
 import DonationDetials from "./DonationDetials";
 import { useMutation } from "urql";
@@ -58,6 +58,20 @@ const DonationWizard = (props: Props) => {
         <div>
           Thank you for your donation of $
           {donationResult?.data.createDonation?.count}!!
+          <div>
+            <Button
+              width="100%"
+              colorScheme="orange"
+              size="lg"
+              borderRadius="full"
+              onClick={() => {
+                setShowConfirmation(false);
+                prevStep();
+              }}
+            >
+              Go Back
+            </Button>
+          </div>
         </div>
       ) : (
         pages[step]
