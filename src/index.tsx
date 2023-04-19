@@ -5,11 +5,12 @@ import { App } from "./App";
 import * as serviceWorker from "./serviceWorker";
 import {
   createClient,
-  Provider,
-  subscriptionExchange,
   fetchExchange,
+  cacheExchange,
+  subscriptionExchange,
+  Provider,
 } from "urql";
-import { cacheExchange } from "@urql/exchange-graphcache";
+// import { sseExchange } from "@grafbase/urql-exchange";
 
 import { createClient as createWSClient } from "graphql-ws";
 
@@ -20,8 +21,8 @@ const wsClient = createWSClient({
 const client = createClient({
   url: "http://localhost:3001/graphql",
   exchanges: [
-    fetchExchange,
     cacheExchange,
+    fetchExchange,
     subscriptionExchange({
       forwardSubscription: (operation: any) => ({
         subscribe: (sink: any) => ({
