@@ -12,7 +12,7 @@
 
 ## Live Link
 
-[Live](keystone-retro-dashboard.netlify.app)
+[Live](https://teamseas-clone.netlify.app/)
 
 ## Getting Started
 
