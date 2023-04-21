@@ -1,6 +1,6 @@
 # Teamseas clone
 
-> Teamseas is an non-profit organzation setup by Mr beast to aid in cleaning of our seas and oceans. In this project I aim to eplicate the original website.
+> Teamseas is an non-profit organzation setup by Mr beast to aid in cleaning of our seas and oceans. In this project I aim to replicate the original website.
 
 ## Built With
 
