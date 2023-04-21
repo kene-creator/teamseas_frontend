@@ -14,6 +14,10 @@
 
 [Live](https://teamseas-clone.netlify.app/)
 
+## Api repo link
+
+[Repo Link](https://github.com/kene-creator/Teamseas_api)
+
 ## Getting Started
 
 To get a local copy up and running follow these simple example steps.
