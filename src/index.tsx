@@ -15,11 +15,11 @@ import {
 import { createClient as createWSClient } from "graphql-ws";
 
 const wsClient = createWSClient({
-  url: "ws://localhost:3001/graphql",
+  url: "wss://teamseas.onrender.com/graphql",
 });
 
 const client = createClient({
-  url: "http://localhost:3001/graphql",
+  url: "https://teamseas.onrender.com/graphql",
   exchanges: [
     cacheExchange,
     fetchExchange,
