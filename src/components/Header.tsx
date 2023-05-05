@@ -1,5 +1,13 @@
 import React from "react";
-import { Box, Text, VStack, Grid, Heading } from "@chakra-ui/react";
+import {
+  Box,
+  Text,
+  VStack,
+  Grid,
+  Heading,
+  Spinner,
+  Flex,
+} from "@chakra-ui/react";
 import { Logo } from "../Logo";
 import { Counter } from "../donations/Counter";
 import { useQuery, useSubscription } from "urql";
@@ -30,7 +38,17 @@ export default function Header() {
   );
   const [{ data, fetching, error }] = useQuery({ query: TotalDonationsQuery });
 
-  if (fetching) return <div>Fetching...</div>;
+  if (fetching)
+    return (
+      <Flex
+        height="100vh"
+        width="100%"
+        justifyContent="center"
+        alignItems="center"
+      >
+        <Spinner size="xl" />
+      </Flex>
+    );
   if (error) return <div>Error: {error.message}</div>;
 
   return (
