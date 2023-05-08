@@ -38,17 +38,17 @@ export default function Header() {
   );
   const [{ data, fetching, error }] = useQuery({ query: TotalDonationsQuery });
 
-  if (fetching)
-    return (
-      <Flex
-        height="100vh"
-        width="100%"
-        justifyContent="center"
-        alignItems="center"
-      >
-        <Spinner size="xl" />
-      </Flex>
-    );
+  // if (fetching)
+  //   return (
+  //     <Flex
+  //       height="100vh"
+  //       width="100%"
+  //       justifyContent="center"
+  //       alignItems="center"
+  //     >
+  //       <Spinner size="xl" />
+  //     </Flex>
+  //   );
   if (error) return <div>Error: {error.message}</div>;
 
   return (
@@ -72,8 +72,13 @@ export default function Header() {
             <br /> Remove trash with us and track your progress
           </Text>
           <Heading as="h2" size="4xl">
-            <Counter from={0} to={res.data || data.totalDonations} />
+            {fetching ? (
+              <Spinner size="xl" />
+            ) : (
+              <Counter from={0} to={res.data || data.totalDonations} />
+            )}
           </Heading>
+
           <DonationWizard />
           <Leaderboard />
         </VStack>
