@@ -1,13 +1,5 @@
 import React from "react";
-import {
-  Box,
-  Text,
-  VStack,
-  Grid,
-  Heading,
-  Spinner,
-  Flex,
-} from "@chakra-ui/react";
+import { Box, Text, VStack, Grid, Heading, Spinner } from "@chakra-ui/react";
 import { Logo } from "../Logo";
 import { Counter } from "../donations/Counter";
 import { useQuery, useSubscription } from "urql";
